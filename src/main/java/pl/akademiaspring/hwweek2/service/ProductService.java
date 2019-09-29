@@ -1,5 +1,6 @@
 package pl.akademiaspring.hwweek2.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
@@ -11,10 +12,21 @@ import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class ProductService {
+    private Product product;
     private List<Product> products;
 
+    @Autowired
+    public ProductService(Product product) {
+        this.product = product;
 
-    public ProductService() {
+    }
+
+    public List<Product> getProductsList() {
+        addProductToList();
+        return products;
+    }
+
+    private void addProductToList(){
         products = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             Product product = new Product("Merkury_" + (i + 1), priceGenerator());
@@ -26,18 +38,5 @@ public class ProductService {
         return ThreadLocalRandom.current().nextInt(50, 301);
     }
 
-    private void printProductsAndPricesSum() {
-        int pricesSum = 0;
-        for (Product product : products) {
-            System.out.println(product.getName() + " | " + product.getPrice());
-            pricesSum += product.getPrice();
-        }
-        System.out.println("-------------------------------");
-        System.out.println("Suma cen produktów: " + pricesSum);
-    }
 
-    @EventListener(ApplicationReadyEvent.class)
-    public void showProducts() {
-        printProductsAndPricesSum();
-    }
 }
