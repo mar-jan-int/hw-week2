@@ -33,6 +33,6 @@ public class PlusShopService implements Shop {
             pricesSum += product.getPrice();
         }
         System.out.println("-------------------------------");
-        System.out.println("Suma po rabacie: " + pricesSum + " vat: " + (pricesSum * vat / 100));
+        System.out.println("Suma: " + pricesSum + " vat: " + (pricesSum * vat / 100));
     }
 }

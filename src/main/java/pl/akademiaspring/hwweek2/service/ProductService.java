@@ -1,5 +1,7 @@
 package pl.akademiaspring.hwweek2.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -15,6 +17,8 @@ public class ProductService {
     private Product product;
     private List<Product> products;
 
+    Logger logger = LoggerFactory.getLogger(ProductService.class);
+
     @Autowired
     public ProductService(Product product) {
         this.product = product;
@@ -23,6 +27,7 @@ public class ProductService {
 
     public List<Product> getProductsList() {
         addProductToList();
+        logger.warn("ProductService");
         return products;
     }
 

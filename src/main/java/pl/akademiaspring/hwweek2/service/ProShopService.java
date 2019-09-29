@@ -35,7 +35,7 @@ public class ProShopService implements Shop {
             sumPrices += product.getPrice();
         }
         System.out.println("-------------------------------");
-        System.out.println("Suma: " + sumPrices + ", Suma po rabacie: " + (sumPrices - (sumPrices / 100) * discount)
+        System.out.println("Suma: " + sumPrices + ", po rabacie: " + (sumPrices - (sumPrices / 100) * discount)
                 + ", vat: " + (sumPrices * vat / 100));
     }
 }
